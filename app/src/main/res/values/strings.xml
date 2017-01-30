@@ -32,4 +32,6 @@
 
     <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
     <string name="gender_female">Female</string>
+    <string name="insert_data_items">Insert dummy data</string>
+    <string name="delete_all_entries">Delete all</string>
 </resources>
