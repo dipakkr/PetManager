@@ -1,5 +1,8 @@
 package com.github.dipakkr.petsmanager;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
@@ -13,14 +16,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 /**
  * Created by deepak on 30-01-2017.
  */
 
 import com.github.dipakkr.petsmanager.data.PetContract.PetEntry;
-
-import java.util.zip.Inflater;
+import com.github.dipakkr.petsmanager.data.Petdbhelper;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -95,6 +98,34 @@ public class EditorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private void insertPet(){
+        String nameString  = mPetname.getText().toString().trim();
+        String breedString = mPetBreed.getText().toString().trim();
+        String weightString = mWeight.getText().toString().trim();
+
+        int weight = Integer.parseInt(weightString);
+
+        Petdbhelper petdbhelper = new Petdbhelper(this);
+        SQLiteDatabase db = petdbhelper.getWritableDatabase();
+
+        //Create content values to insert data in specific fields
+        ContentValues values = new ContentValues();
+        values.put(PetEntry.COLUMN_PET_NAME,nameString);
+        values.put(PetEntry.COLUMN_PET_BREED,breedString);
+        values.put(PetEntry.COLUMN_PET_WEIGHT,weightString);
+        values.put(PetEntry.COLUMN_PET_GENDER,mGender);
+
+        long newRowId = db.insert(PetEntry.TABLE_NAME,null,values);
+
+        if(newRowId == -1){
+            //error in  saving to database
+            Toast.makeText(this, "Error in Saving to database", Toast.LENGTH_SHORT).show();
+        }else
+        {
+            Toast.makeText(this, "Row inserted with new row id  " + newRowId, Toast.LENGTH_SHORT).show();
+        }
+
+
+
 
     }
 }
