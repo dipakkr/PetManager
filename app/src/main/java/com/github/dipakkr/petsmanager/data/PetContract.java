@@ -11,16 +11,15 @@ public final class PetContract {
     private PetContract() {
     }
 
-    private static final class PetEntry implements BaseColumns {
+    public static final class PetEntry implements BaseColumns {
 
+        public static final String TABLE_NAME = "pets";
+        public  static final String ID = BaseColumns._ID;
+        public  static final String COLUMN_PET_NAME = "name";
+        public  static final String COLUMN_PET_BREED = "breed";
+        public  static final String COLUMN_PET_GENDER = "gender";
 
-        private static final String TABLE_NAME = "pets";
-        private static final String ID = BaseColumns._ID;
-        private static final String COLUMN_PET_NAME = "name";
-        private static final String COLUMN_PET_BREED = "breed";
-        private static final String COLUMN_PET_GENDER = "gender";
-
-        public final static String COLUMN_PET_WEIGHT = "weight";
+        public  static final String COLUMN_PET_WEIGHT = "weight";
 
         public static final int GENDER_UNKNOWN = 0;
         public static final int GENDER_MALE = 1;

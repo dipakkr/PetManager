@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/action_insert_dummy_data"
-        android:title="@string/insert_data_item"
+        android:title="@string/insert_data_items"
         app:showAsAction="never" />
 
     <item

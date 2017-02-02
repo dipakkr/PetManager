@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.github.dipakkr.petsmanager.data.Petdbhelper;
+import com.github.dipakkr.petsmanager.data.PetContract.PetEntry;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -39,10 +40,17 @@ public class MainActivity extends AppCompatActivity{
         super.onStart();
         displaydatabaseinfo();
     }
+
     private void displaydatabaseinfo(){
         SQLiteDatabase db = petdbhelper.getReadableDatabase();
 
-
+        String[] Projection = {
+                PetEntry._ID,
+                PetEntry.COLUMN_PET_NAME,
+                PetEntry.COLUMN_PET_BREED,
+                PetEntry.COLUMN_PET_GENDER,
+                PetEntry.COLUMN_PET_WEIGHT
+        };
     }
 
     @Override
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity{
 
             case R.id.action_insert_dummy_data :
                 insertPet();
-                displayDatabaseInfo();
+                displaydatabaseinfo();
                 return true;
             case R.id.action_delete_all_entries :
                 return true;
@@ -81,3 +89,4 @@ public class MainActivity extends AppCompatActivity{
             values.put(PetEntry.COLUMN_PET_WEIGHT, 7);
     }
 }
+
