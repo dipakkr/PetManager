@@ -11,8 +11,12 @@ import android.support.annotation.Nullable;
  */
 
 public class PetProvider extends ContentProvider {
+    
+    private static String LOG_TAG = PetProvider.class.getSimpleName();
+    
     @Override
     public boolean onCreate() {
+        //// TODO: 27-02-2017  
         return false;
     }
 

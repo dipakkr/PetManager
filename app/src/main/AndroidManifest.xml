@@ -20,6 +20,10 @@
                   android:parentActivityName=".MainActivity"
                   android:theme="@style/EditorTheme">
         </activity>
+        <provider
+            android:authorities="com.github.dipakkr.petsmanager"
+            android:name=".data.PetProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>
