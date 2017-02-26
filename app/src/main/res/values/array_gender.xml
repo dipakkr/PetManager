@@ -4,6 +4,5 @@
         <item>@string/gender_male</item>
         <item>@string/gender_female</item>
         <item>@string/gender_unknown</item>
-
     </string-array>
 </resources>

@@ -12,14 +12,17 @@ import com.github.dipakkr.petsmanager.data.PetContract.PetEntry;
 
 public class Petdbhelper extends SQLiteOpenHelper {
 
+    // Step 2 Define Constants
     public static final String LOG_TAG = Petdbhelper.class.getSimpleName();
     private static final String DATABASE_NAME = "shelter.db";
     private static final int DATABASE_VERSION = 1;
-    public Petdbhelper(Context context) {
 
+    // Use Constructor
+    public Petdbhelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // Step 3 override onCreate and onUpgrade method
     @Override
     public void onCreate(SQLiteDatabase db) {
 

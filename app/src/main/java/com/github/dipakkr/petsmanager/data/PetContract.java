@@ -6,13 +6,13 @@ import android.provider.BaseColumns;
  * Created by deepak on 30-01-2017.
  */
 
+
 public final class PetContract {
 
     private PetContract() {
     }
 
     public static final class PetEntry implements BaseColumns {
-
         public static final String TABLE_NAME = "pets";
         public  static final String ID = BaseColumns._ID;
         public  static final String COLUMN_PET_NAME = "name";

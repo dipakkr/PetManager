@@ -31,13 +31,12 @@ public class EditorActivity extends AppCompatActivity {
     private EditText mPetBreed;
     private Spinner mPetGender;
     private EditText mWeight;
-
     private int mGender = PetEntry.GENDER_UNKNOWN;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.layout.activity_editor);
+        setContentView(R.layout.activity_editor);
 
          mPetname = (EditText)findViewById(R.id.edit_pet_name);
          mPetBreed = (EditText)findViewById(R.id.edit_pet_breed);
@@ -47,13 +46,14 @@ public class EditorActivity extends AppCompatActivity {
         setupSpinner();
     }
     private void setupSpinner(){
+
         ArrayAdapter genderAdapter = ArrayAdapter.createFromResource(this,R.array.array_gender_option,
-                android.R.layout.simple_spinner_dropdown_item);
+                android.R.layout.simple_spinner_item);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         mPetGender.setAdapter(genderAdapter);
-       mPetGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        mPetGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                String selection = (String) adapterView.getItemAtPosition(i);
                if (!TextUtils.isEmpty(selection)) {
                    if (selection.equals(getString(R.string.gender_male))) {
@@ -86,13 +86,13 @@ public class EditorActivity extends AppCompatActivity {
             case R.id.action_save :
                 insertPet();
                 finish();
-                break;
+                return true;
             case R.id.action_delete_all_entries:
                 //leave for now
                 return true;
             case android.R.id.home :
                 NavUtils.navigateUpFromSameTask(this);
-                break;
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -105,6 +105,7 @@ public class EditorActivity extends AppCompatActivity {
         int weight = Integer.parseInt(weightString);
 
         Petdbhelper petdbhelper = new Petdbhelper(this);
+
         SQLiteDatabase db = petdbhelper.getWritableDatabase();
 
         //Create content values to insert data in specific fields
@@ -121,11 +122,7 @@ public class EditorActivity extends AppCompatActivity {
             Toast.makeText(this, "Error in Saving to database", Toast.LENGTH_SHORT).show();
         }else
         {
-            Toast.makeText(this, "Row inserted with new row id  " + newRowId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Row inserted with new row id  " + newRowId,  Toast.LENGTH_SHORT).show();
         }
-
-
-
-
     }
 }
